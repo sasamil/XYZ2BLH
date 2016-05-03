@@ -29,7 +29,7 @@ nr2. (as I said - more square roots)
 12) Performance: nr2 wins other methods at usual altitudes. The order is: (nr2, sq2), (bowring-proj, bowring23), (opt-direc),
 direct, Moritz-Heiskennen), Borkowsky.
 
-13) Performance: nr2 wins other methods at satellite altitudes. The order is: (nr2, bowring-proj), sq2, bowring23, (opt-direct,
+13) Performance: nr2 wins other methods at satellite altitudes. The order is: (nr2, bowring-proj, sq2), bowring23, (opt-direct,
 direct, Moritz-Heiskennen), Borkowsky.
 
 
