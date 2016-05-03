@@ -17,7 +17,7 @@ used by most of Geodetic and GIS sofwares. ( function: geocentric_to_geodetic() 
 3) Bowring - B.R.Bowring (1976), Transformation from Spatial to geographical Coordinates, Survey Review: XXIII,181
 This method is often considered as the fastest one. There are two variants/branches - iterative algorithm and heuristic.
 Practically, the fact that iterations converge rapidly brings to the idea of using only the first iteration (heuristic). This 
-is a good performance-accuracy trade, but only if we operate on 'usual heights'. On satellite altitudes, the height accuracy is
+is a good performance-accuracy trade, but only if we operate at 'usual heights'. On satellite altitudes, the height accuracy is
 not good enough.
 
 The 'proj' library also contains the implementation of this algorithm (heuristic) as an alternative method for XYZ->BLh 
