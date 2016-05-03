@@ -9,7 +9,7 @@ transcedential functions (exp, log, cos, acos, sqrt) and therefore, it can not b
 it doesn't always yield correct results. (I shall present such cases and I shall offer improvement/correction). 
 
 2) Moritz-Heiskanen (Physical Geodesy, 1967)
-This is the far most used and most refered (iterative) algorithm for XYZ -> BLh transformation. Here is a copy of the
+This is the far most used and most refered (iterative) algorithm for XYZ->BLh transformation. Here is a copy of the 
 implementation developed by "Institut für Erdmessung", University of Hannover, July 1988. Exactly this implementation is built
 in 'proj' - probably the most popular OS library for coordinate transformations. Fast and reliable algorithm/implementation, 
 used by most of Geodetic and GIS sofwares. ( function: geocentric_to_geodetic() )
@@ -20,7 +20,7 @@ Practically, the fact that iterations converge rapidly brings to the idea of usi
 is a good performance-accuracy trade, but only if we operate on 'usual heights'. On satellite altitudes, the height accuracy is
 not good enough.
 
-The 'proj' library also contains the implementation of this algorithm (heuristic) as an alternative method for XYZ -> BLh 
+The 'proj' library also contains the implementation of this algorithm (heuristic) as an alternative method for XYZ->BLh 
 transformation. However, this implementation is not complete and it needs a small modification to be correct. Maybe this is a 
 reason why it isn't used anywhere further, in proj. The corrected implementation is in geocentric_to_geodetic_bowring() 
 function, here. (bowring-proj in results.txt).
