@@ -1,0 +1,62 @@
+Old methods:
+
+1) Borkowsky - Named after Polish astronomer K.M.Borkowsky. (Astrophysics and Space Science, 139 (1987), Bull. Géod., 63 (198))
+Essentially, this is an optimized direct solver of quadratic equation. Similar to direct-opt. However, the initial formula,
+algebric derivations, and method of solving the 4th degree equation are completely different. The method has become popular 
+after the International Earth Rotation Service (IERS) recommended it (IERS TECHNICAL NOTE 21). Despite of such an award, I find
+it inappropriate. The 4th degree polinomial equation can be solved in a simplier way. Besides, this solution contains many 
+transcedential functions (exp, log, cos, acos, sqrt) and therefore, it can not be fast. Even worse - there is a bug in code and
+it doesn't always yield correct results. (I shall present such cases and I shall offer improvement/correction). 
+
+2) Moritz-Heiskanen (Physical Geodesy, 1967)
+This is the far most used and most refered (iterative) algorithm for XYZ -> BLh transformation. Here is a copy of the
+implementation developped by "Institut für Erdmessung", University of Hannover, July 1988. Exactly this implementation is built
+in 'proj' - probably the most popular OS library for coordinate transformations. Fast and reliable algorithm/implementation, 
+used by most of Geodetic and GIS sofwares. ( function: geocentric_to_geodetic() )
+
+3) Bowring - B.R.Bowring (1976), Transformation from Spatial to geographical Coordinates, Survey Review: XXIII,181
+This method is often considered as the fastest one. There are two variants/branches - iterative algorithm and heuristic.
+Practically, the fact that iterations converge rapidly brings to the idea of using only the first iteration (heuristic). This 
+is a good performance-accuracy trade, but only if we operate on 'usual heights'. On satellite altitudes, the height accuracy is
+not good enough.
+
+The 'proj' library also contains the implementation of this algorithm (heuristic) as an alternative method for XYZ -> BLh 
+transformation. However, this implementation is not complete and it needs a small modification to be correct. Maybe this is a 
+reason why it isn't used anywhere further, in proj. The corrected implementation is in geocentric_to_geodetic_bowring() 
+function, here. (bowring-proj in results.txt).
+
+The iterative Bowring is implemented in functions: bowring2() and bowring3(). The code is made in accordance to a) GPS-Theory 
+and Practice, Hoffman-Wellenhof,p232 b) Comparision of Different Algorithms to Transform Geocentric to Geodetic Coordinates, 
+Alireza Seemkooei, and c) http://gis.stackexchange.com/questions/28446/computational-most-efficient-way-to-convert-cartesian-to
+-geodetic-coordinates
+
+These functions provide very similar performances/results and they are refered in results.txt as 'bowring23'.
+
+
+New methods:
+
+All of my methods here start with the original (easy to prove) equation: (1+f')·P·tan(E) - b·e'^2·sin(E) - Z = 0 
+( f' - second flattening; b - small axis; e'^2 - seccond eccentricity; E - reduced latitude; P = sqrt(X^2+Y^2); )
+
+Substituting tan(E/2) with t, this equation becomes quartic: t^4 + A·t^3 + B·t - 1 = 0. New algorithms are based on solving 
+this quartic equation.
+
+1) Direct solution. Solving quartic by the technique and code explained in my 'Quartic' repository (please, take a look on it).
+The rest of the job is straightforward.
+
+2) Optimized direct solution. Solving quartic by the technique explained in 'Quartic' repository but optimized for this
+specific task. Taylored for the case where there is no quadratic member. The optimization is formidable, the code is much 
+simplier. Unfortuantely, the execution is faster, but not not so much faster.
+
+3) Newton-Raphson - (nr2).  Our quartic is very suitable for applying Newton-Raphson iterative procedure. The convergency is 
+rapid, there is no transcedent functions during the iteration, the code is extreamly simple (one row for calculating iteration 
+step!). Equaly accurate for 'usual heights' and for satellite heights. So far, the fastest algorithm.
+
+4) Quadratic interpolation - (sq2). Unlike standard quadratic interpolation (three points needed), the linear component is 
+dropped out here (two points needed). Thus, the practical and performance benifits are gained. The method is accurate and fast.
+It converges even faster then Bowring and it is particulary good for satellite heights. However, this method contains a sqrt() 
+during the iteration and consiquently, nr2 is usually faster. (even with more iterations)
+
+
+(Later, I will provide more detailed explanations and full theoretical background. I promisse. It will be in a file, let's say - theory.pdf)
+

@@ -1,0 +1,36 @@
+1) Borkowsky is the slowest.
+
+2) Moritz-Heiskennen is much faster then Borkowsky but it is still slow (comparing with other methods, here). Although it is
+being used in 'proj' (most important library for geodetic transformations), it is clearly defeated by other algorithms.
+
+3) Bowring-proj needs small modifications in order to be correct. Anyway, bowring-proj is not reliable at satellite 
+altitudes. It's fast but it's not always accurate at cm/mm level. (keep in mind, it is practically heuristic)
+
+4) Bowring-proj is faster that bowring23. Quite logical. 
+
+5) IERS recommends Borkowsky. However, it is not fast i.e. it is the slowest. Worst of all - the code contains a bug.
+
+6) Bowring23 and nr2 are equally accurate but a little slower at sattelite heights. (usually, one iteration more)
+
+7) Direct solution and optimized-direct are equally good at sattelite heights. The same accuracy, the same performancies. They 
+behave equally at any circumstances. (quit logical for direct solutions)
+
+8) sq2 is equally accurate/fast at sattelite heights.
+
+9) As for the speed - sq2 wins bowring-proj at usual heights but bowring-proj wins sq2 at satellite heights.
+
+10) direct (and opt-direct) is an extremely fast quartic solver. Surprisingly, it beats even Moritz-Heiskennen, the most 
+used BLH->BLh algorithm in geodetic praxis.
+
+11) The similar ideas about reaching the high performancies can be found in Fukushima's work, however there are more 
+transcedental functions (square roots) than in nr2. It's not tested yet but imo, it is not likely that it will be faster then 
+nr2. (as I said - more square roots)
+
+12) Performance: nr2 wins other methods at usual altitudes. The order is: (nr2, sq2), (bowring-proj, bowring23), (opt-direc),
+direct, Moritz-Heiskennen), Borkowsky.
+
+13) Performance: nr2 wins other methods at satellite altitudes. The order is: (nr2, bowring-proj), sq2, bowring23, (opt-direct,
+direct, Moritz-Heiskennen), Borkowsky.
+
+
+
