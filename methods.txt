@@ -12,7 +12,7 @@ it doesn't always yield correct results. (I shall present such cases and I shall
 This is the far most used and most refered (iterative) algorithm for XYZ->BLh transformation. Here is a copy of the 
 implementation developed by "Institut für Erdmessung", University of Hannover, July 1988. Exactly this implementation is built
 in 'proj' - probably the most popular OS library for coordinate transformations. Fast and reliable algorithm/implementation, 
-used by most of Geodetic and GIS sofwares. ( function: geocentric_to_geodetic() )
+used by most of Geodetic and GIS softwares. ( function: geocentric_to_geodetic() )
 
 3) Bowring - B.R.Bowring (1976), Transformation from Spatial to geographical Coordinates, Survey Review: XXIII,181
 This method is often considered as the fastest one. There are two variants/branches - iterative algorithm and heuristic.
