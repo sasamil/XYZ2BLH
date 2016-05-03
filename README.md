@@ -1,7 +1,7 @@
 
 New algorithms are based on my formula: (1+f')·X·tan(E) - b·e'^2·sin(E) - Y = 0 . 
 
-This formula is transformed afterwards to quartic equaton: x^4 + A·t^3 + B·t - 1 = 0 .
+This formula is transformed afterwards to quartic equaton: t^4 + A·t^3 + B·t - 1 = 0 .
 
 Four algorithms are created for solving this quartic equation: 1) direct solution (please, see my 'Quartic' repository) 
 2) optimized direct solution (taylored for this specific case) 3) Newton-Raphson based iterative solution 4) Solution based on so-called quadratic interpolation. The main idea behind all these methods is - speed. To simplify procedure and to reduce using of trancedential functions, in order to enhance the performancies.
