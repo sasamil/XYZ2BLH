@@ -49,7 +49,7 @@ specific task. Taylored for the case where there is no quadratic member. The opt
 simplier. Unfortuantely, the execution is faster, but not not so much faster.
 
 3) Newton-Raphson - (nr2).  Our quartic is very suitable for applying Newton-Raphson iterative procedure. The convergency is 
-rapid, there is no transcedent functions during the iteration, the code is extreamly simple (one row for calculating iteration 
+rapid, there is no transcedent functions during the iteration, the code is simple (one row for calculating iteration 
 step!). Equaly accurate for 'usual heights' and for satellite heights. So far, the fastest algorithm.
 
 4) Semiquadratic interpolation - (sq2). Unlike standard quadratic interpolation (three points needed), the linear component is 
