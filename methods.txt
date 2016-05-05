@@ -35,7 +35,7 @@ These functions provide very similar performances/results and they are refered i
 
 New methods:
 
-All of my methods here start with my (easy to prove) equation: (1+f')·P·tan(E) - b·e'^2·sin(E) - Z = 0 
+Every new method here, starts with my (easy to prove) equation: (1+f')·P·tan(E) - b·e'^2·sin(E) - Z = 0 
 ( f' - second flattening; b - small axis; e'^2 - seccond eccentricity; E - reduced latitude; P = sqrt(X^2+Y^2); )
 
 Substituting tan(E/2) with t, this equation becomes quartic: t^4 + A·t^3 + B·t - 1 = 0. New algorithms are based on solving 
