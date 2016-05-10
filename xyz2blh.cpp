@@ -58,10 +58,10 @@ XYZtriplet geocentric_to_geodetic(const _double_ a, const _double_ b, const XYZt
 {
 /* local defintions and variables */
 /* end-criterium of loop, accuracy of sin(Latitude) */
-	int maxiter = 30;
-	_double_ genau = tolerance; //1.E-12;
-	_double_ genau2 = (genau*genau);
-	_double_ e_2 = 1.0 - b*b/a/a;
+   int maxiter = 30;
+   _double_ genau = tolerance; //1.E-12;
+   _double_ genau2 = (genau*genau);
+   _double_ e_2 = 1.0 - b*b/a/a;
 
     bool At_Pole;    /* indicates location is in polar region */
     int iter;        /* # of continous iteration, max. 30 is always enough (s.a.) */
@@ -77,21 +77,22 @@ XYZtriplet geocentric_to_geodetic(const _double_ a, const _double_ b, const XYZt
     _double_ CPHI;     /* cos of searched geodetic latitude */
     _double_ SPHI;     /* sin of searched geodetic latitude */
     _double_ SDPHI;    /* end-criterium: addition-theorem of sin(Latitude(iter)-Latitude(iter-1)) */
-
-	_double_ X = p.x;
+	
+    _double_ X = p.x;
     _double_ Y = p.y;
     _double_ Z = p.z ? p.z : 0.0;   //Z value not always supplied
     _double_ Longitude;
     _double_ Latitude;
     _double_ Height;
-	XYZtriplet retval;
+    XYZtriplet retval;
 
     At_Pole = false;
     P = sqrt(X*X+Y*Y);
     RR = sqrt(X*X+Y*Y+Z*Z);
 
 /*  special cases for latitude and longitude */
-    if (P/a < genau) {
+    if (P/a < genau) 
+    {
 
 /*  special case, if P=0. (X=0., Y=0.) */
         At_Pole = true;
@@ -109,7 +110,8 @@ XYZtriplet geocentric_to_geodetic(const _double_ a, const _double_ b, const XYZt
             return retval;
         }
     }
-	else {
+    else
+    {
 /*  ellipsoidal (geodetic) longitude
  *  interval: -PI < Longitude <= +PI */
         Longitude=atan2(Y,X);
@@ -166,38 +168,42 @@ XYZtriplet geocentric_to_geodetic(const _double_ a, const _double_ b, const XYZt
 // In case 3 real roots: => x[0], x[1], x[2], return 3
 //         2 real roots: x[0], x[1],          return 2
 //         1 real root : x[0], x[1] ± i*x[2], return 1
-unsigned int solveP3(_double_ *x, _double_ a, _double_ b, _double_ c)
+unsigned int solveP3(_double_* x, _double_ a, _double_ b, _double_ c)
 {
 	_double_ a2 = a*a;
-    _double_ q  = (a2 - 3.*b)/9.;
+    	_double_ q  = (a2 - 3.*b)/9.;
 	_double_ r  = (a*(2.*a2-9.*b) + 27.*c)/54.;
-    _double_ r2 = r*r;
+    	_double_ r2 = r*r;
 	_double_ q3 = q*q*q;
 	_double_ A,B;
-    if(r2<q3) {
-        _double_ t=r/sqrt(q3);
+	
+    	if(r2<q3) 
+    	{
+        	_double_ t=r/sqrt(q3);
 		if( t<-1.) t=-1.;
 		if( t> 1.) t= 1.;
-        t=acos(t);
-        a/=3.; q=-2.*sqrt(q);
-        x[0]=q*cos(t/3.)-a;
-        x[1]=q*cos((t+TWOPI)/3.)-a;
-        x[2]=q*cos((t-TWOPI)/3.)-a;
-        return(3);
-    } else {
-        //A =-pow(fabs(r)+sqrt(r2-q3),1./3.);
-        A = -exp(log(fabs(r)+sqrt(r2-q3)) * ONETHIRD);
+        	t=acos(t);
+        	a/=3.; q=-2.*sqrt(q);
+        	x[0]=q*cos(t/3.)-a;
+        	x[1]=q*cos((t+TWOPI)/3.)-a;
+        	x[2]=q*cos((t-TWOPI)/3.)-a;
+        	return(3);
+    	} 
+    	
+    	else 
+    	{
+        	//A =-pow(fabs(r)+sqrt(r2-q3),1./3.);
+        	A = -exp(log(fabs(r)+sqrt(r2-q3)) * ONETHIRD);
 		if( r<0. ) A=-A;
-		//B = A==0? 0 : B=q/A;
 		B = (0.==A ? 0. : q/A);
 
 		a/=3.;
 		x[0] =(A+B)-a;
-        x[1] =-0.5*(A+B)-a;
-        x[2] = 0.5*sqrt(3.)*(A-B);
+        	x[1] =-0.5*(A+B)-a;
+        	x[2] = 0.5*sqrt(3.)*(A-B);
 		if(fabs(x[2])<tolerance) { x[2]=x[1]; return(2); }
-        return(1);
-    }
+        	return(1);
+	 }
 }// solveP3
 
 //---------------------------------------------------------------------------
@@ -210,9 +216,9 @@ unsigned int solveP3(_double_ *x, _double_ a, _double_ b, _double_ c)
 // In case x[1] or x[3] are imaginnary -
 unsigned int solveP4(_double_ *re, _double_ *im, _double_ a, _double_ b, _double_ c, _double_ d)
 {
-    _double_ q1, q2, p1, p2, D, sqd, y;
-    _double_ a3 = -b;
-    _double_ b3 =  a*c -4.*d;
+    	_double_ q1, q2, p1, p2, D, sqd, y;
+    	_double_ a3 = -b;
+    	_double_ b3 =  a*c -4.*d;
 	_double_ c3 = -a*a*d - c*c + 4.*b*d;
 	_double_ x3[3];
 
@@ -243,7 +249,7 @@ unsigned int solveP4(_double_ *re, _double_ *im, _double_ a, _double_ b, _double
 	else
 	{
 		sqd = sqrt(D);
-        q1 = (y + sqd/*sqrt(D)*/) * 0.5;
+        	q1 = (y + sqd/*sqrt(D)*/) * 0.5;
 		q2 = (y - sqd/*sqrt(D)*/) * 0.5;
 
 		p1 = (a*q1-c)/(q1-q2);
@@ -257,14 +263,14 @@ unsigned int solveP4(_double_ *re, _double_ *im, _double_ a, _double_ b, _double
 	if(D < 0.0)
 	{
 		iRetval -= 2.;
-        re[0] = re[1] = -p1 * 0.5;
-        im[0] = sqrt(-D) * 0.5;
+        	re[0] = re[1] = -p1 * 0.5;
+        	im[0] = sqrt(-D) * 0.5;
 	}
 	else
 	{
 		sqd = sqrt(D);
-        re[0] = (-p1 + sqd/*sqrt(D)*/) * 0.5;
-        re[1] = (-p1 - sqd/*sqrt(D)*/) * 0.5;
+        	re[0] = (-p1 + sqd/*sqrt(D)*/) * 0.5;
+        	re[1] = (-p1 - sqd/*sqrt(D)*/) * 0.5;
 	}
 
 	// x^2 + p2*x + q2 = 0
@@ -272,14 +278,14 @@ unsigned int solveP4(_double_ *re, _double_ *im, _double_ a, _double_ b, _double
 	if(D < 0.0)
 	{
 		iRetval -= 2.;
-        re[2] = re[3] = -p2 * 0.5;
-        im[1] = sqrt(-D) * 0.5;
+        	re[2] = re[3] = -p2 * 0.5;
+        	im[1] = sqrt(-D) * 0.5;
 	}
 	else
 	{
-        sqd = sqrt(D);
-        re[2] = (-p2 + sqd/*sqrt(D)*/) * 0.5;
-        re[3] = (-p2 - sqd/*sqrt(D)*/) * 0.5;
+        	sqd = sqrt(D);
+        	re[2] = (-p2 + sqd/*sqrt(D)*/) * 0.5;
+        	re[3] = (-p2 - sqd/*sqrt(D)*/) * 0.5;
 	}
 
 	return iRetval;
@@ -367,6 +373,7 @@ XYZtriplet geocentric_to_geodetic_bowring (const _double_ Geocent_a, const _doub
             }
         }
     }
+    
     W2 = X*X + Y*Y;
     W = sqrt(W2);
     T0 = Z * AD_C;
@@ -621,7 +628,7 @@ XYZtriplet sq2(const _double_ a, const _double_ b, const XYZtriplet& p)
             tg, cs;
 
 
-    XYZtriplet blh;
+    	XYZtriplet blh;
 
 	f2  = a/b;
 	e22 = a*f2 - b;
@@ -637,7 +644,7 @@ XYZtriplet sq2(const _double_ a, const _double_ b, const XYZtriplet& p)
 	x1p2 = x1*x1;   y1 = x1*(B + x1p2*(A + x1)) - 1.;
 
 	x2 = x1 - y1/(x1p2*(3.*A + 4.*x1) + B);
-    x2p2 = x2*x2;   y2 = x2*(B + x2p2*(A + x2)) - 1.;
+    	x2p2 = x2*x2;   y2 = x2*(B + x2p2*(A + x2)) - 1.;
 
 	oldx2=x1p2, oldy=y1;
 	do
@@ -648,15 +655,15 @@ XYZtriplet sq2(const _double_ a, const _double_ b, const XYZtriplet& p)
 
 		x2p2 = oldx2, y2 = oldy;
 		oldx2 = x1p2,  oldy = y1;
-    }
-    while( (y1>tolerance) | (y1<mtolerance) );
+    	}
+    	while( (y1>tolerance) | (y1<mtolerance) );
 
-    tg = (2.*x1)/(1.-x1*x1) * f2;
-    cs = 1. / sqrt(1.+tg*tg);
-    //t = (1.-t)/(1.+t); // t = tg(pi/4 - E/2) -->  t = tg(E/2)
-    blh.x = atan(tg);
-    blh.y = atan(Y/X);
-    blh.z = (R - a*(1.-x1)/(1.+x1))*cs + (Z-b)*tg*cs;
+    	tg = (2.*x1)/(1.-x1*x1) * f2;
+    	cs = 1. / sqrt(1.+tg*tg);
+    	//t = (1.-t)/(1.+t); // t = tg(pi/4 - E/2) -->  t = tg(E/2)
+    	blh.x = atan(tg);
+    	blh.y = atan(Y/X);
+    	blh.z = (R - a*(1.-x1)/(1.+x1))*cs + (Z-b)*tg*cs;
 
 	return blh;
 } // sq2
@@ -676,14 +683,14 @@ XYZtriplet direct_solution(const _double_ a, const _double_ b, const XYZtriplet&
 	//_double_ A = 2*(f2*R + e22) / Z;
 	//_double_ B = 2*(f2*R - e22) / Z;
 
-    _double_ f  = b/a;
-    _double_ sqd = -f * Z/R;
-    _double_ pom = (f*b-a)/R;
+    	_double_ f  = b/a;
+    	_double_ sqd = -f * Z/R;
+    	_double_ pom = (f*b-a)/R;
 
-    _double_ A = 2. * sqd;
-    _double_ C = A;
-    _double_ D = sqd*sqd;
-    _double_ B = 1 - pom*pom + D;
+    	_double_ A = 2. * sqd;
+    	_double_ C = A;
+    	_double_ D = sqd*sqd;
+    	_double_ B = 1 - pom*pom + D;
 
 	_double_ re[4], im[2];
 
@@ -692,24 +699,24 @@ XYZtriplet direct_solution(const _double_ a, const _double_ b, const XYZtriplet&
 	_double_ t;
 	XYZtriplet blh;
 	if(0.0==im[0])
-        t = re[0]>0.0 ? re[0] : re[1];
-    else
-        t = re[2]>0.0 ? re[2] : re[3];
+        	t = re[0]>0.0 ? re[0] : re[1];
+    	else
+        	t = re[2]>0.0 ? re[2] : re[3];
 
-    ///*
-    _double_ sn = t/sqrt(1. + t*t);
-    //_double_ cs = sn/x1;		x1=tg(E)
+    	///*
+    	_double_ sn = t/sqrt(1. + t*t);
+    	//_double_ cs = sn/x1;		x1=tg(E)
 
-    _double_ xe = a*sn/t;
-    _double_ ye = b*sn;
+    	_double_ xe = a*sn/t;
+    	_double_ ye = b*sn;
 
-    _double_ tgphi = t/f;
-    _double_ cosphi = 1.  / sqrt(1.+tgphi*tgphi);
+    	_double_ tgphi = t/f;
+    	_double_ cosphi = 1.  / sqrt(1.+tgphi*tgphi);
 
-    blh.x = atan(tgphi);
-    blh.y = atan(Y/X);
-    blh.z = (R-xe)*cosphi + (Z-ye)*tgphi*cosphi;
-    //*/
+    	blh.x = atan(tgphi);
+    	blh.y = atan(Y/X);
+    	blh.z = (R-xe)*cosphi + (Z-ye)*tgphi*cosphi;
+    	//*/
 
 	return blh;
 } //direct_solution
@@ -734,31 +741,32 @@ XYZtriplet direct_solution_opt(const double a, const double b, const XYZtriplet&
 	aa = 2*(f2*R + e22) / Z;
 	c  = 2*(f2*R - e22) / Z;
 
-    q  = -(aa*c + 4.)/3.;
+    	q  = -(aa*c + 4.)/3.;
 	r  =  (aa*aa - c*c)*0.5;
-    A  = -pow(fabs(r)+sqrt(r*r-q*q*q),1./3.);
-    //A = -exp(log(fabs(r)+sqrt(r*r-q*q*q)) * ONETHIRD);
-    if( r<0 ) A=-A;
-    B = (0==A ? 0 : q/A);
+    	A  = -pow(fabs(r)+sqrt(r*r-q*q*q),1./3.);
+    	//A = -exp(log(fabs(r)+sqrt(r*r-q*q*q)) * ONETHIRD);
+    	if( r<0 ) A=-A;
+    	B = (0==A ? 0 : q/A);
 	y = A+B;
 
 	D = y*y + 4.;
 	sqd = sqrt(D);
-    q1 = (y + sqd) * 0.5;
-    q2 = (y - sqd) * 0.5;
+    	q1 = (y + sqd) * 0.5;
+    	q2 = (y - sqd) * 0.5;
 
-    p1 = (aa*q1-c)/(q1-q2);
+    	p1 = (aa*q1-c)/(q1-q2);
 
 	D = p1*p1 - 4*q1;
 	if(D >= 0.0)
-        t = (-p1 + sqrt(D)) * 0.5;
+        	t = (-p1 + sqrt(D)) * 0.5;
 	else
 	{
-        p2 = (c-aa*q2)/(q1-q2);
-        t = (-p2 + sqrt(p2*p2 - 4*q2)) * 0.5; // D2 = p2*p2 - 4*q2;
-    }
+        	p2 = (c-aa*q2)/(q1-q2);
+        	t = (-p2 + sqrt(p2*p2 - 4*q2)) * 0.5; // D2 = p2*p2 - 4*q2;
+    	}
 
-    XYZtriplet blh;
+    	XYZtriplet blh;
+    	
 	t2 = t*t;
 	t *= 2;
 	tg = t/(1-t2);
