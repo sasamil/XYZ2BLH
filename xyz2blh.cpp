@@ -584,25 +584,31 @@ XYZtriplet nr2(const _double_ a, const _double_ b, const XYZtriplet& p)
         x1 = tgEpocetno / (1.+sqrt(1.+tgEpocetno*tgEpocetno));  // x=t=tan(E/2);
         x1p2 = x1*x1; // Die erste Iteration ist ausgeschlossen, weil Funktion könnte negativ sein (ausschließlich).
 
+        // Visual Studio
         //y1 = x1*(B + x1p2*(A + x1)) - 1.;
         //y1pr = x1p2*(C + 4.*x1) + B;
         //step = y1/y1pr;
 
+        // gcc - linux
         y1 = x1;
         y1pr = x1;
         step = --((((y1+=A)*=x1p2)+=B)*=x1) / ((((y1pr*=4.)+=C)*=x1p2)+=B);
+        
         x1 -= step;
 
         do
         {
             x1p2 = x1*x1; // Die erste Iteration ist ausgeschlossen, weil Funktion könnte negativ sein (ausschließlich).
 
+            // Visual Studio
             //y1 = x1*(B + x1p2*(A + x1)) - 1.;
             //y1pr = x1p2*(C + 4.*x1) + B;
             //step = y1/y1pr;
 
+            // gcc - linux
             y1 = y1pr = x1;
             step = --((((y1+=A)*=x1p2)+=B)*=x1) / ((((y1pr*=4.)+=C)*=x1p2)+=B);
+            
             x1 -= step;
         }
         while (step > tolerance);
