@@ -342,7 +342,7 @@ int main(int argc, char *argv[])
 	std::cout << "    " << "Local Time ==> " << asctime(local);// << endl;
 	std::cout << "    " << "Elapsed Time: " << elapsed << " sec" << std::endl << std::endl;
 
-	std::cout << std::endl << "Das Program hat ein Scluß gemacht. Er ist erfolgreiche zu einem Ende gebracht!" << std::endl << std::endl;
+	//std::cout << std::endl << "Das Program hat ein Scluß gemacht. Er ist erfolgreiche zu einem Ende gebracht!" << std::endl << std::endl;
 
 	return 0;
 }
