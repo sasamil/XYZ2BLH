@@ -39,8 +39,8 @@ XYZtriplet BLh2XYZ(const _double_ a, const _double_ b, const XYZtriplet& blh)
 	_double_ cs = cos(fi);
 	_double_ N = a/sqrt(1.0 - e_2*sn*sn);
 
-	_double_ X = (N + h)			* cs*cos(lambda);
-	_double_ Y = (N + h)			* cs*sin(lambda);
+	_double_ X = (N + h)		* cs*cos(lambda);
+	_double_ Y = (N + h)		* cs*sin(lambda);
 	_double_ Z = (N*(1-e_2) + h)	* sn;
 
 	XYZtriplet retval;
@@ -101,13 +101,13 @@ XYZtriplet geocentric_to_geodetic(const _double_ a, const _double_ b, const XYZt
 /*  if (X,Y,Z)=(0.,0.,0.) then Height becomes semi-minor axis
  *  of ellipsoid (=center of mass), Latitude becomes PI/2 */
         if (RR/a < genau) {
-            Latitude = HALFPI;
-            Height   = -b;
+        	Latitude = HALFPI;
+        	Height   = -b;
 
-			retval.x = Latitude;
-			retval.y = Longitude;
-			retval.z = Height;
-            return retval;
+		retval.x = Latitude;
+		retval.y = Longitude;
+		retval.z = Height;
+        	return retval;
         }
     }
     else
