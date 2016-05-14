@@ -5,7 +5,7 @@ Essentially, this is an optimized direct solver of algebric equation of 4th degr
 formula, algebric derivations and method of solving the 4th degree equation are completely different. The method has become 
 popular after the International Earth Rotation Service (IERS) recommended it (IERS TECHNICAL NOTE 21). Despite of such an award
 I find it inappropriate. The 4th degree polinomial equation can be solved in a simpler way. Besides, this solution contains 
-many transcedential functions (exp, log, cos, acos, sqrt) and therefore, it can not be fast. Even worse - there is a bug in 
+many transcedential functions (exp, log, cos, acos, sqrt) and therefore, it cannot be fast. Even worse - there is a bug in 
 code and it doesn't always yield correct results. (I shall present such cases and I shall offer improvement/correction). 
 
 2) Moritz-Heiskanen (Physical Geodesy, 1967)
