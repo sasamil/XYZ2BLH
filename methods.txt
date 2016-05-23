@@ -10,7 +10,7 @@ code and it doesn't always yield correct results. (I shall present such cases an
 
 2) Moritz-Heiskanen (Physical Geodesy, 1967)
 This is the far most used and most refered (iterative) algorithm for XYZ->BLh transformation. Here is a copy of the 
-implementation developed by "Institut für Erdmessung", University of Hannover, July 1988. Exactly this implementation is built
+implementation developed by "Institut für Erdmessung", University of Hannover. Exactly this implementation is built
 in 'proj' - probably the most popular OS library for coordinate transformations. Fast and reliable algorithm/implementation, 
 used by most of Geodetic and GIS softwares. ( function: geocentric_to_geodetic() )
 
