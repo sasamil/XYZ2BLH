@@ -415,9 +415,10 @@ XYZtriplet geocentric_to_geodetic_bowring (const _double_ Geocent_a, const _doub
 } // geocentric_to_geodetic_bowring
 
 //---------------------------------------------------------------------------
-// Bowring: /home/sasamil/Geodesy/BLH2XYZ/COMPARISON OF DIFFERENT ALGORITHMS.pdf  or
-// /home/sasamil/Geodesy/Books/GPS_Hofmann-Wellenhof (p.232)   or
-// /home/sasamil/Geodesy/BLH2XYZ/Comparision2!! (p.8)
+// Bowring:
+// GPS, Theory and Practice - Hofmann-Wellenhof (p.232),
+// Comparison of different algorithms to transform geocentric to geodetic coordinates, Alireza Amiri Seemkooei
+// A comparison of methods used in rectangular to geodetic coordinate transformations, R. Burtch (p.8)
 XYZtriplet bowring2(const _double_ a, const _double_ b, const XYZtriplet& p)
 {
 	_double_ f2  = a/b;
@@ -477,7 +478,7 @@ XYZtriplet bowring2(const _double_ a, const _double_ b, const XYZtriplet& p)
 
 
 //---------------------------------------------------------------------------
-// Bowring: http://gis.stackexchange.com/questions/28446/..
+// Bowring: based on http://gis.stackexchange.com/questions/28446/..
 // ..computational-most-efficient-way-to-convert-cartesian-to-geodetic-coordinates
 XYZtriplet bowring3(const _double_ a, const _double_ b, const XYZtriplet& pin)
 {
