@@ -46,7 +46,7 @@ The rest of the job is straightforward.
 
 2) Optimized direct solution. Solving quartic by the technique explained in 'Quartic' repository but optimized for this
 specific task. Taylored for the case where there is no quadratic member. The optimization is formidable, the code is much 
-simplier. Unfortuantely, the execution is faster, but not not so much faster.
+simplier. Unfortuantely, the execution is faster, but not so much faster.
 
 3) Newton-Raphson - (nr2).  Our quartic is very suitable for applying Newton-Raphson iterative procedure. The convergency is 
 rapid, there is no transcedent functions during the iteration, the code is simple (one row for calculating iteration 
