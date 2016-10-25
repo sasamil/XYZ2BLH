@@ -1,5 +1,5 @@
 
-New algorithms are based on formula: (1+f')·X·tan(E) - b·e'^2·sin(E) - Y = 0 . 
+New algorithms are based on my formula: (1+f')·X·tan(E) - b·e'^2·sin(E) - Y = 0 . 
 
 This formula is transformed afterwards to quartic equaton: t^4 + A·t^3 + B·t - 1 = 0 .
 
