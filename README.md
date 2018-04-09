@@ -1,4 +1,6 @@
 
+Transformation of geocentric (X,Y,Z) to geodetic (B,L,H - latitude, longitude, height) coordinates.
+
 New algorithms are based on my formula: (1+f')·X·tan(E) - b·e'^2·sin(E) - Y = 0 .  (*)
 
 This formula can be transformed afterwards to quartic equaton: t^4 + A·t^3 + B·t - 1 = 0 .
