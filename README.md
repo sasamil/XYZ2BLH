@@ -15,7 +15,7 @@ And, <strong>performances are everything!</strong> They save time and energy; th
 (*)<br/>
 E  - reduced (parametric) latitude<br/>
 f' - second flattening of the Earth ellipsoid<br/>
-e' - excentrity of the Earth ellipsoid<br/>
+e' - second excentrity of the Earth ellipsoid<br/>
 b  - polar axis<br/>
 </div>  
 
