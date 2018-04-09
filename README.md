@@ -11,11 +11,11 @@ New algorithms are tested against the most popular and well-known methods: Morit
 
 And, <strong>performances are everything!</strong> They save time and energy; they save the planet's resources. <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQwZB2zIijBfmCSS8pkk9JAcKM9ojo8vHC0iz6hVTRA4VTO9qE_VA" alt="healthy earth" height="28" width="42">
 
-<p style="font-size:75%;">
+<div style="font-size:75%;">
 (*)<br/>
 E  - reduced (parametric) latitude<br/>
 f' - second flattening of the Earth ellipsoid<br/>
 e' - excentrity of the Earth ellipsoid<br/>
 b  - polar axis<br/>
-</p>  
+</div>  
 
