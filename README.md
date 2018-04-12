@@ -17,7 +17,7 @@ E  - reduced (parametric) latitude<br/>
 f' - second flattening of the Earth ellipsoid<br/>
 e' - second excentrity of the Earth ellipsoid<br/>
 b  - polar axis<br/>
-x  - abscissa of the point at the meridian cross-section: x = sqrt(X*X + Y*Y)
-y  - ordinate of the point at the meridian cross-section: y = Z
+x  - abscissa of the point at the meridian cross-section: x = sqrt(X*X + Y*Y)<br/>
+y  - ordinate of the point at the meridian cross-section: y = Z<br/>
 </div>  
 
